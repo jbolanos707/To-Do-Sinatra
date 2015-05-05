@@ -3,7 +3,7 @@
 <form action='/lists' method='post'>
   <ul>
     <% @lists.each() do |list| %>
-      <li><a href="/lists/<%=list.id()%>"><%= list.description() %></a></li>
+      <li><a href="/tasks/<%=list.id()%>" id='<%=list.id()%>'><%= list.description() %></a></li>
     <% end %>
   </ul>
 

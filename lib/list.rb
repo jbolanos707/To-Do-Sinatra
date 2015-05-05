@@ -30,4 +30,14 @@ class List
   define_method(:add_task) do |task|
     @tasks.push(task)
   end
+
+  define_singleton_method(:find) do |id|
+    all().each() do |list|
+      if(list.id == id)
+        return list
+      end
+    end
+    return nil
+  end
+
 end

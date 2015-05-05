@@ -4,9 +4,9 @@
 #   As a user, I want to select a single list and see the tasks for it.
 #   As a user, I want to add tasks to a list.
 
-require('spec_helper')
 require('capybara/rspec')
 require('./app')
+require('spec_helper')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
@@ -29,8 +29,19 @@ describe('creating new list', {:type => :feature}) do
   it('displays a form and a button that when submitted displays a newly added list') do
     visit('/')
     click_button('All Lists')
-    fill_in('list_name', :with => 'school')
+    fill_in('list_description', :with => 'school')
     click_button('Create List')
-    expect(page).to have_content('school')  
+    expect(page).to have_content('school')
+  end
+end
+
+describe('seeing details tasks for a single list', {:type => :feature}) do
+  it('allows a user to click a list to see the tasks in that list') do
+    visit('/')
+    test_list = List.new({:description => "school", :id => nil})
+    test_list.save()
+    click_button('All Lists')
+    click_link(test_list.id().to_s())
+    expect(page).to have_content("school tasks:")
   end
 end
