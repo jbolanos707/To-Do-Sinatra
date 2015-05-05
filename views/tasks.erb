@@ -1,1 +1,27 @@
 <h1> <%= @description %> tasks: </h1>
+
+<form action='/tasks' method='post'>
+
+  <input id='list_id' name='list_id' type='hidden' value="<%= @list.id %>">
+
+  <ul>
+    <% @tasks.each() do |task| %>
+    <li><%= task.description %></li>
+    <% end %>
+  </ul>
+
+  <div class='form-group'>
+    <label for='task_description'>Task Description</label>
+    <input id='task_description' name='task_description' class='form-control' type='text'>
+    <br>
+    <label for='due_date'>Due Date</label>
+    <input id='due_date' name='due_date' class='form-control' type='text' placeholder=''>
+  </div>
+  <button class='btn-success'>Create Task</button>
+</form>
+
+<br>
+
+<form action='/lists' method='get'>
+  <button class='btn-danger'>Go Back</button>
+</form>

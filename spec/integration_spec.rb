@@ -45,3 +45,17 @@ describe('seeing details tasks for a single list', {:type => :feature}) do
     expect(page).to have_content("school tasks:")
   end
 end
+
+describe('creating a new task', {:type => :feature}) do
+  it('displays a form and button that when submitted displays a newly added task') do
+    visit('/')
+    test_list = List.new({:description => "school", :id => nil})
+    test_list.save()
+    click_button('All Lists')
+    click_link(test_list.id().to_s())
+    fill_in('task_description', :with => 'learn Sinatra')
+    fill_in('due_date', :with => '2015-05-07')
+    click_button('Create Task')
+    expect(page).to have_content('learn Sinatra')
+  end
+end
