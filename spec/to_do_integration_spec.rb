@@ -13,7 +13,7 @@ set(:show_exceptions, false)
 describe('the path to the welcome page', {:type => :feature}) do
   it('displays the welcome page') do
     visit('/')
-    expect(page).to have_content('WELCOME TO THE TO-DO APP')
+    expect(page).to(have_content('WELCOME TO THE TO-DO APP'))
   end
 end
 
@@ -22,5 +22,15 @@ describe('viewing all lists', {:type => :feature}) do
     visit('/')
     click_button('All Lists')
     expect(page).to have_content('ALL LISTS')
+  end
+end
+
+describe('creating new list', {:type => :feature}) do
+  it('displays a form and a button that when submitted displays a newly added list') do
+    visit('/')
+    click_button('All Lists')
+    fill_in('list_name', :with => 'school')
+    click_button('Create List')
+    expect(page).to have_content('school')  
   end
 end

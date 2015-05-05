@@ -1,1 +1,15 @@
 <h1>ALL LISTS</h1>
+
+<form action='/lists' method='post'>
+  <ul>
+    <% @lists.each() do |list| %>
+      <li><a href="/lists/<%=list.id()%>"><%= list.description() %></a></li>
+    <% end %>
+  </ul>
+
+  <div class='form-group'>
+    <label for='list_description'>List Description</label>
+    <input id='list_description' name='list_description' class='form-control' type='text'>
+  </div>
+  <button class='btn-success'>Create List</button>
+</form>
