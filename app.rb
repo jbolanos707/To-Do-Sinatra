@@ -9,3 +9,7 @@ DB = PG.connect({:dbname => 'to_do'})
 get('/') do
   erb(:index)
 end
+
+get('/lists') do
+  erb(:lists)
+end
